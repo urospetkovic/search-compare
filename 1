@@ -1,0 +1,50 @@
+import random
+
+
+def guess_rand(x, y):
+    run = True
+    num = random.randint(x, y)
+    counter = 0
+    while run is True:
+        guess = random.randint(x, y)
+        counter += 1
+        if guess > num:
+            y = guess-1
+            guess = random.randint(x, y)
+        elif guess < num:
+            x = guess+1
+            guess = random.randint(x, y)
+        elif guess == num:
+            run = False
+    return counter
+
+
+def guess_binary(x, y):
+    counter = 0
+    num = random.randint(x, y)
+    run = True
+    while run is True:
+        guess = int((x + y) / 2)
+        counter += 1
+        if guess > num:
+            y = guess-1
+        elif guess < num:
+            x = guess+1
+        elif guess == num:
+            run = False
+    return counter
+
+
+guesses_rand = []
+for i in range(100):
+    guesses_rand.append(guess_rand(0, 100))
+average_guesses_rand = sum(guesses_rand) / len(guesses_rand)
+print('Average guesses random search: ', average_guesses_rand)
+
+
+guesses_binary = []
+for i in range(100):
+    guesses_binary.append(guess_binary(0, 100))
+average_guesses_binary = sum(guesses_binary) / len(guesses_binary)
+print('Average guesses binary search: ', average_guesses_binary)
+                
