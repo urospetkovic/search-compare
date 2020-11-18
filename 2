@@ -1,0 +1,61 @@
+import random
+import time
+
+#  random guess (between updated x and y)
+def guess_rand(x, y):
+    run = True
+    num = random.randint(x, y)
+    counter = 0
+    while run is True:
+        guess = random.randint(x, y)
+        counter += 1
+        if guess > num:
+            y = guess-1
+            guess = random.randint(x, y)
+        elif guess < num:
+            x = guess+1
+            guess = random.randint(x, y)
+        elif guess == num:
+            run = False
+    return counter
+
+
+#  binary guess (middle between x and y)
+def guess_binary(x, y):
+    counter = 0
+    num = random.randint(x, y)
+    run = True
+    while run is True:
+        guess = int((x + y) / 2)
+        counter += 1
+        if guess > num:
+            y = guess-1
+        elif guess < num:
+            x = guess+1
+        elif guess == num:
+            run = False
+    return counter
+
+
+numbers_range = 1000  #choose range of numbers
+repetitions = 1000  #choose number of repetitions
+
+guesses_rand = []
+start = time.time()
+for i in range(int(repetitions)):
+    guesses_rand.append(guess_rand(0, numbers_range))
+    average_guesses_rand = float(sum(guesses_rand) / len(guesses_rand))
+end = time.time()
+time_elapsed = end - start
+print('Average guesses random search:', average_guesses_rand)
+print('Time elapsed:', time_elapsed)
+
+guesses_binary = []
+start = time.time()
+for i in range(int(repetitions)):
+    guesses_binary.append(guess_binary(0, numbers_range))
+    average_guesses_binary = float(sum(guesses_binary) / len(guesses_binary))
+end = time.time()
+time_elapsed = end - start
+print('Average guesses binary search:', average_guesses_binary)
+print('Time elapsed:', time_elapsed)
