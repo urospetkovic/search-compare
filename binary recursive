@@ -1,0 +1,26 @@
+import random
+
+def binary_recursive_search(x, y, num, counter):
+    guess = int((x + y) / 2)
+    counter += 1
+    print(counter)
+    if guess < num:
+        x = guess+1
+        binary_recursive_search(x, y, num, counter)
+    elif guess > num:
+        y = guess-1
+        binary_recursive_search(x, y, num, counter)
+    if guess == num:
+        guesses_bin_rec.append(counter)
+        
+        
+x = 1
+y = 10
+
+guesses_bin_rec =[]
+for i in range(10):
+    num = int(random.randint(x, y))
+    binary_recursive_search(x, y, num, 0)
+
+avrg_bin_rec = sum(guesses_bin_rec) / len(guesses_bin_rec)
+print('Average', avrg_bin_rec)
