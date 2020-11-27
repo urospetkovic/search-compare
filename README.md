@@ -7,4 +7,4 @@ second one picks the middle between two numbers in a while loop.
 third one picks the middle between two numbers with recursion.
 
 binary search will always have a better average score, 
-but recursion algorithm (3) needs more time.
+but recursion (3) needs more time.
